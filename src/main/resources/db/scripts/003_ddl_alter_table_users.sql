@@ -1,0 +1,1 @@
+alter table users add company_id integer references company(id);

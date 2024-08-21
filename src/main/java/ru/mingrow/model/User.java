@@ -1,10 +1,12 @@
 package ru.mingrow.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.mingrow.converter.BirthDateConverter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +17,7 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String username;
     private String firstname;
     private String lastname;
@@ -24,4 +26,7 @@ public class User {
     @Column(name = "birth_date")
     @Convert(converter = BirthDateConverter.class)
     private BirthDate birthday;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 }
